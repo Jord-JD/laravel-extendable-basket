@@ -40,6 +40,6 @@
     }
   },
   "replace": {
-    "jord-jd/laravel-extendable-basket": "self.version"
+    "divineomega/laravel-extendable-basket": "self.version"
   }
 }
