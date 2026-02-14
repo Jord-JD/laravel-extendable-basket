@@ -21,18 +21,18 @@
   ],
   "autoload": {
     "psr-4": {
-      "DivineOmega\\LaravelExtendableBasket\\": "./src/"
+      "JordJD\\LaravelExtendableBasket\\": "./src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "DivineOmega\\LaravelExtendableBasket\\Tests\\": "./tests/"
+      "JordJD\\LaravelExtendableBasket\\Tests\\": "./tests/"
     }
   },
   "extra": {
     "laravel": {
       "providers": [
-        "DivineOmega\\LaravelExtendableBasket\\Providers\\LaravelExtendableBasketServiceProvider"
+        "JordJD\\LaravelExtendableBasket\\Providers\\LaravelExtendableBasketServiceProvider"
       ]
     },
     "branch-alias": {

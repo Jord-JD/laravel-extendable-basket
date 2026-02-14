@@ -46,7 +46,7 @@ Create a Basket model.
 <?php
 namespace App;
 
-use DivineOmega\LaravelExtendableBasket\Models\Basket as BasketModel;
+use JordJD\LaravelExtendableBasket\Models\Basket as BasketModel;
 
 class Basket extends BasketModel
 {
@@ -65,7 +65,7 @@ Create a BasketItem model.
 <?php
 namespace App;
 
-use DivineOmega\LaravelExtendableBasket\Models\BasketItem as BasketItemModel;
+use JordJD\LaravelExtendableBasket\Models\BasketItem as BasketItemModel;
 
 class BasketItem extends BasketItemModel
 {
@@ -91,7 +91,7 @@ For example, if you had a `Product` model, you can change it as follows.
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use DivineOmega\LaravelExtendableBasket\Interfaces\Basketable;
+use JordJD\LaravelExtendableBasket\Interfaces\Basketable;
 
 class Product extends Model implements Basketable {
 
@@ -246,7 +246,7 @@ An example Basket class implementing this idea is shown below.
 <?php
 namespace App;
 
-use DivineOmega\LaravelExtendableBasket\Models\Basket as BasketModel;
+use JordJD\LaravelExtendableBasket\Models\Basket as BasketModel;
 
 class Basket extends BasketModel
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace DivineOmega\LaravelExtendableBasket\Providers;
+namespace JordJD\LaravelExtendableBasket\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

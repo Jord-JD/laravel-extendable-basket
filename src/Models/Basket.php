@@ -1,9 +1,9 @@
 <?php
 
-namespace DivineOmega\LaravelExtendableBasket\Models;
+namespace JordJD\LaravelExtendableBasket\Models;
 
-use DivineOmega\LaravelExtendableBasket\Interfaces\Basketable;
-use DivineOmega\LaravelExtendableBasket\Interfaces\BasketInterface;
+use JordJD\LaravelExtendableBasket\Interfaces\Basketable;
+use JordJD\LaravelExtendableBasket\Interfaces\BasketInterface;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace DivineOmega\LaravelExtendableBasket\Tests\Models;
+namespace JordJD\LaravelExtendableBasket\Tests\Models;
 
-use DivineOmega\LaravelExtendableBasket\Interfaces\Basketable;
+use JordJD\LaravelExtendableBasket\Interfaces\Basketable;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model implements Basketable

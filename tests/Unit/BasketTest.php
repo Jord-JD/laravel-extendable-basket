@@ -1,10 +1,10 @@
 <?php
 
-namespace DivineOmega\LaravelExtendableBasket\Tests\Unit;
+namespace JordJD\LaravelExtendableBasket\Tests\Unit;
 
-use DivineOmega\LaravelExtendableBasket\Interfaces\BasketInterface;
-use DivineOmega\LaravelExtendableBasket\Tests\Models\Basket;
-use DivineOmega\LaravelExtendableBasket\Tests\TestCase;
+use JordJD\LaravelExtendableBasket\Interfaces\BasketInterface;
+use JordJD\LaravelExtendableBasket\Tests\Models\Basket;
+use JordJD\LaravelExtendableBasket\Tests\TestCase;
 
 class BasketTest extends TestCase
 {

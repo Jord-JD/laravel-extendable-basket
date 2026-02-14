@@ -1,6 +1,6 @@
 <?php
 
-namespace DivineOmega\LaravelExtendableBasket\Interfaces;
+namespace JordJD\LaravelExtendableBasket\Interfaces;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 

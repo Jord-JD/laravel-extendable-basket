@@ -1,9 +1,9 @@
 <?php
 
-namespace DivineOmega\LaravelExtendableBasket\Tests;
+namespace JordJD\LaravelExtendableBasket\Tests;
 
-use DivineOmega\LaravelExtendableBasket\Providers\LaravelExtendableBasketServiceProvider;
-use DivineOmega\LaravelExtendableBasket\Tests\Models\Product;
+use JordJD\LaravelExtendableBasket\Providers\LaravelExtendableBasketServiceProvider;
+use JordJD\LaravelExtendableBasket\Tests\Models\Product;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class TestCase extends OrchestraTestCase

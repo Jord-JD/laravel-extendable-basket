@@ -1,8 +1,8 @@
 <?php
 
-namespace DivineOmega\LaravelExtendableBasket\Models;
+namespace JordJD\LaravelExtendableBasket\Models;
 
-use DivineOmega\LaravelExtendableBasket\Interfaces\BasketItemInterface;
+use JordJD\LaravelExtendableBasket\Interfaces\BasketItemInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 

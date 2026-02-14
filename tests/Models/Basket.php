@@ -1,8 +1,8 @@
 <?php
 
-namespace DivineOmega\LaravelExtendableBasket\Tests\Models;
+namespace JordJD\LaravelExtendableBasket\Tests\Models;
 
-use DivineOmega\LaravelExtendableBasket\Models\Basket as BasketModel;
+use JordJD\LaravelExtendableBasket\Models\Basket as BasketModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Basket extends BasketModel

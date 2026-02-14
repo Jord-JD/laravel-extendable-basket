@@ -1,8 +1,8 @@
 <?php
 
-namespace DivineOmega\LaravelExtendableBasket\Tests\Unit;
+namespace JordJD\LaravelExtendableBasket\Tests\Unit;
 
-use DivineOmega\LaravelExtendableBasket\Tests\TestCase;
+use JordJD\LaravelExtendableBasket\Tests\TestCase;
 use Illuminate\Support\Facades\Schema;
 
 class MigrationsTest extends TestCase

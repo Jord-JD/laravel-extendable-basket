@@ -1,8 +1,8 @@
 <?php
 
-namespace DivineOmega\LaravelExtendableBasket\Tests\Models;
+namespace JordJD\LaravelExtendableBasket\Tests\Models;
 
-use DivineOmega\LaravelExtendableBasket\Models\BasketItem as BasketItemModel;
+use JordJD\LaravelExtendableBasket\Models\BasketItem as BasketItemModel;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BasketItem extends BasketItemModel
