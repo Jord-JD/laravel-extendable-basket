@@ -1,9 +1,9 @@
 # 🛒 Laravel Extendable Basket
 
-[![Build Status](https://travis-ci.com/DivineOmega/laravel-extendable-basket.svg?branch=master)](https://travis-ci.com/DivineOmega/laravel-extendable-basket)
-[![Coverage Status](https://coveralls.io/repos/github/DivineOmega/laravel-extendable-basket/badge.svg?branch=master)](https://coveralls.io/github/DivineOmega/laravel-extendable-basket?branch=master)
+[![Build Status](https://travis-ci.com/Jord-JD/laravel-extendable-basket.svg?branch=master)](https://travis-ci.com/Jord-JD/laravel-extendable-basket)
+[![Coverage Status](https://coveralls.io/repos/github/Jord-JD/laravel-extendable-basket/badge.svg?branch=master)](https://coveralls.io/github/Jord-JD/laravel-extendable-basket?branch=master)
 [![StyleCI](https://github.styleci.io/repos/104244274/shield?branch=master)](https://github.styleci.io/repos/104244274)
-[![](https://img.shields.io/packagist/dt/divineomega/laravel-extendable-basket.svg)](https://packagist.org/packages/divineomega/laravel-extendable-basket/stats)
+[![](https://img.shields.io/packagist/dt/jord-jd/laravel-extendable-basket.svg)](https://packagist.org/packages/jord-jd/laravel-extendable-basket/stats)
 
 Laravel Extendable Basket provides several abstract classes that implement basic ecommerce basket functionality.
 These classes must be extended by your application.
@@ -13,7 +13,7 @@ These classes must be extended by your application.
 Just install the latest version using composer.
 
 ```
-composer require divineomega/laravel-extendable-basket
+composer require jord-jd/laravel-extendable-basket
 ```
 
 ## Compatibility
