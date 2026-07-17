@@ -2,7 +2,6 @@
 
 [![Build Status](https://travis-ci.com/Jord-JD/laravel-extendable-basket.svg?branch=master)](https://travis-ci.com/Jord-JD/laravel-extendable-basket)
 [![Coverage Status](https://coveralls.io/repos/github/Jord-JD/laravel-extendable-basket/badge.svg?branch=master)](https://coveralls.io/github/Jord-JD/laravel-extendable-basket?branch=master)
-[![StyleCI](https://github.styleci.io/repos/104244274/shield?branch=master)](https://github.styleci.io/repos/104244274)
 [![](https://img.shields.io/packagist/dt/jord-jd/laravel-extendable-basket.svg)](https://packagist.org/packages/jord-jd/laravel-extendable-basket/stats)
 
 Laravel Extendable Basket provides several abstract classes that implement basic ecommerce basket functionality.
