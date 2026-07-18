@@ -4,6 +4,7 @@ namespace JordJD\LaravelExtendableBasket\Tests\Unit;
 
 use JordJD\LaravelExtendableBasket\Interfaces\BasketInterface;
 use JordJD\LaravelExtendableBasket\Tests\Models\Basket;
+use JordJD\LaravelExtendableBasket\Tests\Models\Product;
 use JordJD\LaravelExtendableBasket\Tests\TestCase;
 
 class BasketTest extends TestCase
@@ -69,5 +70,19 @@ class BasketTest extends TestCase
         $basket = Basket::getNew();
 
         $this->assertEquals(0, $basket->getSubtotal());
+    }
+
+    /**
+     * Ensures all basket items can be cleared in one operation.
+     */
+    public function testBasketCanBeCleared()
+    {
+        $basket = Basket::getNew();
+        $basket->add(1, Product::findOrFail(1));
+        $basket->add(2, Product::findOrFail(2));
+
+        $this->assertSame(2, $basket->clear());
+        $this->assertTrue($basket->isEmpty());
+        $this->assertSame(0, $basket->items()->count());
     }
 }

@@ -12,6 +12,9 @@ interface BasketInterface
 
     public function items(): HasMany;
 
+    /**
+     * @return BasketItemInterface
+     */
     public function add(int $quantity, Basketable $basketable, array $meta = []);
 
     public function getSubtotal();
