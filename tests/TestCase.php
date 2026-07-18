@@ -2,6 +2,8 @@
 
 namespace JordJD\LaravelExtendableBasket\Tests;
 
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use JordJD\LaravelExtendableBasket\Providers\LaravelExtendableBasketServiceProvider;
 use JordJD\LaravelExtendableBasket\Tests\Models\Product;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
@@ -35,9 +37,19 @@ class TestCase extends OrchestraTestCase
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__.'/Database/Migrations');
         $this->artisan('migrate:fresh', ['--database' => 'testbench'])->run();
+        $this->createProductsTable();
         $this->addProducts();
+    }
+
+    private function createProductsTable()
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->integer('price');
+            $table->timestamps();
+        });
     }
 
     private function addProducts()
