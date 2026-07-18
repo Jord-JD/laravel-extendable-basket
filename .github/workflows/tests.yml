@@ -18,7 +18,7 @@ jobs:
           - php: '7.1'
             laravel: '5.5'
             testbench: '~3.5.0'
-            phpunit: '^7.5'
+            phpunit: '^6.5'
             dbal: '^2.13'
             composer: v2.2
           - php: '7.2'
