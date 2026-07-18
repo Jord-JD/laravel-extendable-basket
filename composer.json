@@ -3,14 +3,13 @@
   "description": "🛒 Laravel Extendable Basket provides several abstract classes that implement basic ecommerce basket functionality",
   "type": "library",
   "require": {
-    "php": ">=8.1",
-    "laravel/framework": "^5.5||^6.0||^7.0||^8.0||^9.0||^10.0"
+    "php": ">=7.1",
+    "laravel/framework": "^5.5||^6.0||^7.0||^8.0||^9.0||^10.0||^11.0||^12.0||^13.0"
   },
   "require-dev": {
-    "orchestra/testbench": "^8.0",
-    "phpunit/phpunit": "^9.0",
-    "php-coveralls/php-coveralls": "^2.1",
-    "doctrine/dbal": "^1.0||^2.0||^3.0"
+    "orchestra/testbench": "^3.5||^4.0||^5.0||^6.0||^7.0||^8.0||^9.0||^10.0||^11.0",
+    "phpunit/phpunit": "^7.5||^8.5||^9.6||^10.5||^11.5||^12.5",
+    "doctrine/dbal": "^2.13||^3.0||^4.0"
   },
   "license": "LGPL-3.0-only",
   "authors": [
@@ -34,12 +33,17 @@
       "providers": [
         "JordJD\\LaravelExtendableBasket\\Providers\\LaravelExtendableBasketServiceProvider"
       ]
-    },
-    "branch-alias": {
-      "dev-master": "6.0-dev"
-    }
+      },
+      "branch-alias": {
+        "dev-master": "6.1-dev"
+      }
   },
   "replace": {
     "divineomega/laravel-extendable-basket": "self.version"
+  },
+  "config": {
+    "allow-plugins": {
+      "kylekatarnls/update-helper": false
+    }
   }
 }

@@ -29,6 +29,11 @@ abstract class BasketItem extends Model implements BasketItemInterface
 
     public function getPrice()
     {
-        return $this->quantity * $this->basketable->getPrice($this->meta);
+        $basketable = $this->basketable;
+        if ($basketable === null) {
+            throw new \LogicException('Cannot calculate a basket item price because its basketable model no longer exists.');
+        }
+
+        return $this->quantity * $basketable->getPrice($this->meta);
     }
 }

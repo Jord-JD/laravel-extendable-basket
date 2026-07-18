@@ -134,10 +134,11 @@ class BasketItemTest extends TestCase
         /** @var Basket $basket */
         $basket = Basket::getNew();
 
-        $basket->add(1, $product);
-        $basket->add(3, $product);
+        $createdItem = $basket->add(1, $product);
+        $updatedItem = $basket->add(3, $product);
 
         $this->assertEquals(1, $basket->items()->count());
+        $this->assertSame($createdItem->getKey(), $updatedItem->getKey());
 
         $item = $basket->items()->first();
 
@@ -297,6 +298,51 @@ class BasketItemTest extends TestCase
 
         $item->setQuantity(0);
 
-        $this->assertEquals(0, $item = $basket->items()->count());
+        $this->assertEquals(0, $basket->items()->count());
+    }
+
+    /**
+     * Test adding the first item persists a manually constructed basket.
+     */
+    public function testAddingToAnUnsavedBasketPersistsIt()
+    {
+        $product = Product::findOrFail(1);
+        $basket = new Basket();
+
+        $this->assertFalse($basket->exists);
+        $item = $basket->add(1, $product);
+
+        $this->assertTrue($basket->exists);
+        $this->assertSame($basket->getKey(), $item->basket_id);
+        $this->assertDatabaseHas('baskets', ['id' => $basket->getKey()]);
+    }
+
+    /**
+     * Test basketable models must be persisted before being referenced.
+     */
+    public function testAddingAnUnsavedBasketableFailsClearly()
+    {
+        $basket = Basket::getNew();
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('must be persisted');
+        $basket->add(1, new Product());
+    }
+
+    /**
+     * Test missing polymorphic models produce a clear price error.
+     */
+    public function testMissingBasketableFailsClearlyWhenCalculatingPrice()
+    {
+        $product = Product::findOrFail(1);
+        $basket = Basket::getNew();
+        $basket->add(1, $product);
+        $product->delete();
+
+        $item = $basket->items()->first();
+
+        $this->expectException(\LogicException::class);
+        $this->expectExceptionMessage('basketable model no longer exists');
+        $item->getPrice();
     }
 }

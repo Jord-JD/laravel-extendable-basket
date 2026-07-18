@@ -2,10 +2,10 @@
 
 namespace JordJD\LaravelExtendableBasket\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use InvalidArgumentException;
 use JordJD\LaravelExtendableBasket\Interfaces\Basketable;
 use JordJD\LaravelExtendableBasket\Interfaces\BasketInterface;
-use Exception;
-use Illuminate\Database\Eloquent\Model;
 
 abstract class Basket extends Model implements BasketInterface
 {
@@ -34,17 +34,29 @@ abstract class Basket extends Model implements BasketInterface
     public function add(int $quantity, Basketable $basketable, array $meta = [])
     {
         if ($quantity < 1) {
-            throw new Exception('Quantity is less than one.');
+            throw new InvalidArgumentException('Quantity must be at least one.');
+        }
+
+        if (!method_exists($basketable, 'getKey') || $basketable->getKey() === null) {
+            throw new InvalidArgumentException('The basketable model must be persisted before it can be added.');
+        }
+
+        if (!$this->exists) {
+            if (!$this->save()) {
+                throw new \RuntimeException('Unable to persist the basket before adding an item.');
+            }
         }
 
         foreach ($this->items as $item) {
-            if (get_class($item->basketable) === get_class($basketable)
-                && $item->basketable->getKey() === $basketable->getKey()
+            $existingBasketable = $item->basketable;
+            if ($existingBasketable !== null
+                && get_class($existingBasketable) === get_class($basketable)
+                && $existingBasketable->getKey() === $basketable->getKey()
                 && $item->meta === $meta) {
                 $item->quantity += $quantity;
                 $item->save();
 
-                return;
+                return $item;
             }
         }
 
@@ -53,12 +65,29 @@ abstract class Basket extends Model implements BasketInterface
         $item = new $basketItem();
         $item->basket_id = $this->id;
         $item->quantity = $quantity;
-        $item->basketable_type = get_class($basketable);
+        $item->basketable_type = method_exists($basketable, 'getMorphClass')
+            ? $basketable->getMorphClass()
+            : get_class($basketable);
         $item->basketable_id = $basketable->getKey();
         $item->meta = $meta;
         $item->save();
 
         unset($this->items);
+
+        return $item;
+    }
+
+    /**
+     * Remove every item from this basket.
+     *
+     * @return int Number of deleted basket items.
+     */
+    public function clear(): int
+    {
+        $deleted = $this->items()->delete();
+        unset($this->items);
+
+        return (int) $deleted;
     }
 
     public function getSubtotal()

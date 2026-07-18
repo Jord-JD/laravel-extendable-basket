@@ -35,8 +35,8 @@ class TestCase extends OrchestraTestCase
     {
         parent::setUp();
 
-        $this->artisan('migrate:fresh', ['--database' => 'testbench'])->run();
         $this->loadMigrationsFrom(__DIR__.'/Database/Migrations');
+        $this->artisan('migrate:fresh', ['--database' => 'testbench'])->run();
         $this->addProducts();
     }
 

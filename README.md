@@ -1,7 +1,6 @@
 # 🛒 Laravel Extendable Basket
 
-[![Build Status](https://travis-ci.com/Jord-JD/laravel-extendable-basket.svg?branch=master)](https://travis-ci.com/Jord-JD/laravel-extendable-basket)
-[![Coverage Status](https://coveralls.io/repos/github/Jord-JD/laravel-extendable-basket/badge.svg?branch=master)](https://coveralls.io/github/Jord-JD/laravel-extendable-basket?branch=master)
+[![Tests](https://github.com/Jord-JD/laravel-extendable-basket/actions/workflows/tests.yml/badge.svg)](https://github.com/Jord-JD/laravel-extendable-basket/actions/workflows/tests.yml)
 [![](https://img.shields.io/packagist/dt/jord-jd/laravel-extendable-basket.svg)](https://packagist.org/packages/jord-jd/laravel-extendable-basket/stats)
 
 Laravel Extendable Basket provides several abstract classes that implement basic ecommerce basket functionality.
@@ -17,7 +16,9 @@ composer require jord-jd/laravel-extendable-basket
 
 ## Compatibility
 
-This package supports Laravel versions 5.5 through 10 and requires PHP 8.1 or higher.
+This package supports Laravel 5.5 through 13. Its own runtime syntax supports PHP
+7.1 and later; Composer will also enforce the higher PHP minimum required by the
+Laravel version selected by your application.
 
 ## Setup
 
@@ -45,6 +46,7 @@ Create a Basket model.
 <?php
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use JordJD\LaravelExtendableBasket\Models\Basket as BasketModel;
 
 class Basket extends BasketModel
@@ -64,6 +66,7 @@ Create a BasketItem model.
 <?php
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use JordJD\LaravelExtendableBasket\Models\BasketItem as BasketItemModel;
 
 class BasketItem extends BasketItemModel
@@ -92,7 +95,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use JordJD\LaravelExtendableBasket\Interfaces\Basketable;
 
-class Product extends Model implements Basketable {
+class Product extends Model implements Basketable
+{
 
     // ...
 
@@ -139,7 +143,7 @@ with any Eloquent model.
 
 ```php
 // Get new basket
-$basket = new Basket();
+$basket = new Basket(); // Saved automatically when its first item is added.
 
 // Get current basket
 $userBasketId = Auth::user()->basket_id;
@@ -156,11 +160,17 @@ used to store information about variations on a product.
 
 ```php
 $quantity = 5;
-$product = Product::FindOrFail(1);
+$product = Product::findOrFail(1);
 
-$basket->add($quantity, $product);
-$basket->add($quantity, $product, ['colour' => 'red', 'size' => 'medium']);
+$item = $basket->add($quantity, $product);
+$variantItem = $basket->add($quantity, $product, ['colour' => 'red', 'size' => 'medium']);
 ```
+
+`add()` returns the created basket item. If the same model and identical metadata
+already exist in the basket, its quantity is increased and that existing item is
+returned. Laravel morph-map aliases are stored when the basketable model provides
+one. Basketable models must be saved before they are added; otherwise an
+`InvalidArgumentException` is thrown instead of creating an orphaned item.
 
 ### Getting basket items
 
@@ -192,6 +202,13 @@ example.
 ```php
 $item = $basket->items->first();
 $item->delete();
+```
+
+To remove every item in one query, call `clear()`. It returns the number of rows
+deleted and keeps the basket itself available for reuse.
+
+```php
+$deletedItemCount = $basket->clear();
 ```
 
 ## Getting the unit cost of a basket item
@@ -230,7 +247,7 @@ A `getSubtotal` method is provided in the basket class that provides the total o
 items in the basket. See the following example.
 
 ```php
-$subtotal = $basket->getSubtotal()
+$subtotal = $basket->getSubtotal();
 ```
 
 If you wish to add delivery costs or discounts, you can create a new `getTotal` method
